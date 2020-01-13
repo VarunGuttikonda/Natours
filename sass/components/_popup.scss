@@ -1,0 +1,100 @@
+.popup{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+    -webkit-backdrop-filter: blur(2.5rem);
+    backdrop-filter: blur(2.5rem);
+    background-color: rgba($color-black, .25);
+
+    @supports (-webkit-backdrop-filter: blur(2.5rem)) or (backdrop-filter: blur(2.5rem)){
+        -webkit-backdrop-filter: blur(2.5rem);
+        backdrop-filter: blur(2.5rem);
+        background-color: rgba($color-black, .25);
+    }
+
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &-close{
+        &:visited,
+        &:link{
+            display: inline-block;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            text-decoration: none;
+            color: #777;
+            font-size: 3rem;
+            transition: all .2s;
+            line-height: 0.9;
+        }
+
+        &:hover{
+            color: $color-primary;
+        }
+    }
+
+    &-content{
+        @include absCenter;
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .4);
+        display: table;
+        overflow: hidden;
+        transform: translate(-50%, -50%) scale(.25);
+        opacity: 0;
+        transition: all .5s .25s ease;
+    }
+
+    &-left{
+        width: 33.333333%;
+        display: table-cell;
+    }
+
+    &-right{
+        width: 66.666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &-text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+    }
+
+    &-img{
+        display: block;
+        width: 100%;
+        -moz-column-count: 2;
+        -moz-column-gap: 4rem;
+        -moz-column-rule: .1rem solid $color-grey-light-2;
+        -ms-column-count: 2;
+        -ms-column-gap: 4rem;
+        -ms-column-rule: .1rem solid $color-grey-light-2;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 4rem;
+        -webkit-column-rule: .1rem solid $color-grey-light-2;
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: .1rem solid $color-grey-light-2;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    &:target &-content{
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
